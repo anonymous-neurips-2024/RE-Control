@@ -5,9 +5,11 @@
 There are two environments for this project. For all programs except metrics.py you can use the environment llm.txt. For metrics.py, you can use the environment metric.txt.
 
 Prepare the activation dataset:
+
 `python get_activations_only.py --model_name vicuna_7B --dataset_name Anthropic/hh-rlhf`
 
 Label the activation with reward:
+
 `python reward_label.py`
 
 Train a value model:  
