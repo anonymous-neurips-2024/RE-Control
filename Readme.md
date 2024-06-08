@@ -10,7 +10,7 @@ Prepare the activation dataset:
 
 Label the activation with reward:
 
-`python reward_label.py`
+`python reward_label.py --mode train`
 
 Train a value model:  
 `python train_value_model.py vicuna hhrlhf --lr 0.0001 --device 0`
