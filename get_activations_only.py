@@ -219,27 +219,27 @@ def main():
     
     token_wise_activations_train, mask_train, response_train = get_llm_activations(args.model_name, model,train_dataloader,tokenizer, device, args.num_samples)
     
-    if not os.path.exists('only_featuresnew'):
-        os.makedirs('only_featuresnew')
+    if not os.path.exists('features'):
+        os.makedirs('features')
     # save the activations
-    with open('only_featuresnew/response_train', 'w') as f:
+    with open('features/response_train', 'w') as f:
         json.dump(response_train, f, ensure_ascii=False)
     token_wise_activations_test, mask_test, response_test  = get_llm_activations(args.model_name, model, test_dataloader,tokenizer, device, args.num_samples)
     
     # create the features directory if no
 
-    torch.save(token_wise_activations_train, 'only_featuresnew/token_wise_activations_train.pth')
-    torch.save(mask_train, 'only_featuresnew/mask_train.pth')
+    torch.save(token_wise_activations_train, 'features/token_wise_activations_train.pth')
+    torch.save(mask_train, 'features/mask_train.pth')
     #torch.save(labels_train, 'features/labels_train.pth')
 
-    torch.save(token_wise_activations_test, 'only_featuresnew/token_wise_activations_test.pth')
-    torch.save(mask_test, 'only_featuresnew/mask_test.pth')
+    torch.save(token_wise_activations_test, 'features/token_wise_activations_test.pth')
+    torch.save(mask_test, 'features/mask_test.pth')
     #torch.save(labels_test, 'features/labels_test.pth')
 
-    with open('only_featuresnew/response_train', 'w') as f:
+    with open('features/response_train', 'w') as f:
         json.dump(response_train, f, ensure_ascii=False)
 
-    with open('only_featuresnew/response_test', 'w') as f:
+    with open('features/response_test', 'w') as f:
         json.dump(response_test, f, ensure_ascii=False)
 
 
