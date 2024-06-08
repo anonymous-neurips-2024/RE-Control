@@ -1,5 +1,8 @@
 # RE-Control
 
+
+There are two environments for this project. For all programs except metrics.py you can use the environment llm.txt. For metrics.py, you can use the environment metric.txt.
+
 Train a value model:  
 `python train_value_model.py vicuna hhrlhf --lr 0.0001 --device 0`
 
