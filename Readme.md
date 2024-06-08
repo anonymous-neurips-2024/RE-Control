@@ -3,6 +3,10 @@
 
 There are two environments for this project. For all programs except metrics.py you can use the environment llm.txt. For metrics.py, you can use the environment metric.txt.
 
+Prepare the activation dataset:
+
+Label the activation with reward:
+
 Train a value model:  
 `python train_value_model.py vicuna hhrlhf --lr 0.0001 --device 0`
 
