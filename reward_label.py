@@ -62,6 +62,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', type=str, default='llama_7B')
     parser.add_argument('--dataset_name', type=str, default='hhrlhf')
+    parser.add_argument('--mode', type=str, default='train')
     parser.add_argument('--num_samples', type=int, default=1)
 
     parser.add_argument('--device', type=int, default=1)
@@ -99,7 +100,10 @@ def main():
 
     # for param in value_model.model.parameters():
     #     param.requires_grad = False
-    out_file = 'only_features_phi-2/response_test.json'
+    if args.mode == 'train':
+        out_file = 'features/response_train.json'
+    elif args.mode == 'test':
+        out_file = 'features/response_test.json'
 
     with open(out_file, "r") as out_f:
         lines = json.load(out_f)
@@ -132,12 +136,18 @@ def main():
 
 
     # create the features directory if no
-    if not os.path.exists('features_phi-2'):
-        os.makedirs('features_phi-2')
+    storage_path = None
+    if args.mode == 'train':
+        storage_path = 'features/labels_train.pth'
+    elif args.mode == 'test':
+        storage_path = 'features/labels_test.pth'
+    
+    #if not os.path.exists('features_phi-2'):
+        #os.makedirs('features_phi-2')
     # get the file path to save the results
     #save the tensor rm_scores to the file
 
-    torch.save(rm_scores, 'features_phi-2/labels_test.pth')  
+    torch.save(rm_scores, storage_path)  
 
 if __name__ == "__main__":
     main()
